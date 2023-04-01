@@ -1,0 +1,21 @@
+bricks:
+  qonblok_bloc:
+    git:
+      url: "https://github.com/kikikimbing/Qonblok"
+      path: bricks/bloc
+  qonblok_usecase:
+    git:
+      url: "https://github.com/kikikimbing/Qonblok"
+      path: bricks/usecase
+  qonblok_testbloc:
+    git:
+      url: "https://github.com/kikikimbing/Qonblok"
+      path: bricks/testbloc
+  qonblok_model:
+    git:
+      url: "https://github.com/kikikimbing/Qonblok"
+      path: bricks/model
+  qonblok_repo:
+    git:
+      url: "https://github.com/kikikimbing/Qonblok"
+      path: bricks/repo
