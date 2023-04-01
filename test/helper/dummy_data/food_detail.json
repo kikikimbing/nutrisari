@@ -1,0 +1,66 @@
+{
+  "text": "food_bwtse5qbmme6vlamyw65bafxjpp1",
+  "hints": [{
+    "food": {
+      "foodId": "food_bwtse5qbmme6vlamyw65bafxjpp1",
+      "label": "Caesar Salad Croutons, Caesar Salad",
+      "knownAs": "CAESAR SALAD CROUTONS, CAESAR SALAD",
+      "nutrients": {
+        "ENERC_KCAL": 429,
+        "PROCNT": 14.289999961853027,
+        "FAT": 14.289999961853027,
+        "CHOCDF": 71.43000030517578
+      },
+      "brand": "SALAD",
+      "category": "Packaged foods",
+      "categoryLabel": "food",
+      "foodContentsLabel": "ENRICHED FLOUR (WHEAT FLOUR; MALTED BARLEY FLOUR; NIACIN; REDUCED IRON; THIAMIN MONONITRATE; RIBOFLAVIN; FOLIC ACID); CANOLA AND/OR SUNFLOWER OIL (WITH ROSEMARY EXTRACT AND ASCORBIC ACID (TO PRESERVE FRESHNESS]); SUGAR; YEAST; 2% OR LESS OF SALT; WHEY; WHEAT GLUTEN; GARLIC POWDER; ROMANO CHEESE SOLIDS FROM COW'S MILK (PART SKIM MILK; CHEESE CULTURES; SALT; ENZYMES); DEHYDRATED PARSLEY; ONION POWDER; TORULA YEAST; YEAST EXTRACT; SPICES; NATURAL FLAVORS; CITRIC ACID; DISODIUM INOSINATE; DISODIUM GUANYLATE; ASCORBIC ACID; MALTODEXTRIN; ENZYMES; EXTRACTIVES OF ANNATTO AND TURMERIC (COLOR); ROSEMARY EXTRACT.",
+      "image": "https://www.edamam.com/food-img/5fa/5fab5f02c0372272b5e21a11fc41db7d.png",
+      "servingSizes": [{
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "quantity": 7
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_tablespoon",
+          "label": "Tablespoon",
+          "quantity": 2
+        }
+      ],
+      "servingsPerContainer": 20
+    },
+    "measures": [{
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+        "label": "Serving"
+      },
+      {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_crouton",
+        "label": "Crouton"
+      },
+      {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+        "label": "Package"
+      },
+      {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+        "label": "Gram"
+      },
+      {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+        "label": "Ounce"
+      },
+      {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+        "label": "Pound"
+      },
+      {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+        "label": "Kilogram"
+      },
+      {
+        "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_tablespoon",
+        "label": "Tablespoon"
+      }
+    ]
+  }]
+}

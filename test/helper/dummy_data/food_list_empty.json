@@ -1,0 +1,11 @@
+{
+  "text": "caesar salad",
+  "parsed": [],
+  "hints": [],
+  "_links": {
+    "next": {
+      "title": "Next page",
+      "href": "https://api.edamam.com/api/food-database/v2/parser?session=40&app_id=5750513c&app_key=9b0d37a59abfc018a33a91b9adfcb770&ingr=caesar+salad&nutrition-type=cooking"
+    }
+  }
+}
