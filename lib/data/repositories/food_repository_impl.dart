@@ -26,10 +26,7 @@ class FoodRepositoryImpl implements FoodRepository {
             model: result,
           );
         },
-        (error, __) {
-          debugPrint(error.toString());
-          return ServerFailure();
-        },
+        (error, __) => ServerFailure(),
       ).run();
 
   @override

@@ -3,17 +3,19 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i7;
 
 import 'package:fpdart/fpdart.dart' as _i4;
 import 'package:mekari_network/mekari_network.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:nutrisari/core/error/failures.dart' as _i9;
-import 'package:nutrisari/core/networking/networking.dart' as _i5;
-import 'package:nutrisari/data/datasources/food_remote_datasource.dart' as _i7;
+import 'package:nutrisari/core/networking/networking.dart' as _i6;
+import 'package:nutrisari/data/datasources/food_remote_datasource.dart' as _i8;
 import 'package:nutrisari/data/models/food/food_model.dart' as _i3;
 import 'package:nutrisari/domain/entities/food.dart' as _i10;
-import 'package:nutrisari/domain/repository/food_repository.dart' as _i8;
+import 'package:nutrisari/domain/repository/food_repository.dart' as _i5;
+import 'package:nutrisari/domain/usecases/get_food_detail_usecase.dart' as _i12;
+import 'package:nutrisari/domain/usecases/get_food_list_usecase.dart' as _i11;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -56,10 +58,21 @@ class _FakeEither_2<L, R> extends _i1.SmartFake implements _i4.Either<L, R> {
         );
 }
 
+class _FakeFoodRepository_3 extends _i1.SmartFake
+    implements _i5.FoodRepository {
+  _FakeFoodRepository_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [Networking].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworking extends _i1.Mock implements _i5.Networking {
+class MockNetworking extends _i1.Mock implements _i6.Networking {
   MockNetworking() {
     _i1.throwOnMissingStub(this);
   }
@@ -73,28 +86,28 @@ class MockNetworking extends _i1.Mock implements _i5.Networking {
         ),
       ) as _i2.MKRNetwork);
   @override
-  _i6.Future<dynamic> getRequest({required String? params}) =>
+  _i7.Future<dynamic> getRequest({required String? params}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getRequest,
           [],
           {#params: params},
         ),
-        returnValue: _i6.Future<dynamic>.value(),
-      ) as _i6.Future<dynamic>);
+        returnValue: _i7.Future<dynamic>.value(),
+      ) as _i7.Future<dynamic>);
 }
 
 /// A class which mocks [FoodRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFoodRemoteDataSource extends _i1.Mock
-    implements _i7.FoodRemoteDataSource {
+    implements _i8.FoodRemoteDataSource {
   MockFoodRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<List<_i3.FoodModel>> getFoodListByName(
+  _i7.Future<List<_i3.FoodModel>> getFoodListByName(
           {required String? foodName}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -102,17 +115,17 @@ class MockFoodRemoteDataSource extends _i1.Mock
           [],
           {#foodName: foodName},
         ),
-        returnValue: _i6.Future<List<_i3.FoodModel>>.value(<_i3.FoodModel>[]),
-      ) as _i6.Future<List<_i3.FoodModel>>);
+        returnValue: _i7.Future<List<_i3.FoodModel>>.value(<_i3.FoodModel>[]),
+      ) as _i7.Future<List<_i3.FoodModel>>);
   @override
-  _i6.Future<_i3.FoodModel> getFoodDetailById({required String? foodId}) =>
+  _i7.Future<_i3.FoodModel> getFoodDetailById({required String? foodId}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getFoodDetailById,
           [],
           {#foodId: foodId},
         ),
-        returnValue: _i6.Future<_i3.FoodModel>.value(_FakeFoodModel_1(
+        returnValue: _i7.Future<_i3.FoodModel>.value(_FakeFoodModel_1(
           this,
           Invocation.method(
             #getFoodDetailById,
@@ -120,19 +133,19 @@ class MockFoodRemoteDataSource extends _i1.Mock
             {#foodId: foodId},
           ),
         )),
-      ) as _i6.Future<_i3.FoodModel>);
+      ) as _i7.Future<_i3.FoodModel>);
 }
 
 /// A class which mocks [FoodRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFoodRepository extends _i1.Mock implements _i8.FoodRepository {
+class MockFoodRepository extends _i1.Mock implements _i5.FoodRepository {
   MockFoodRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i4.Either<_i9.Failure, List<_i10.Food>>> getFoodListByName(
+  _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>> getFoodListByName(
           {required String? foodName}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -140,7 +153,7 @@ class MockFoodRepository extends _i1.Mock implements _i8.FoodRepository {
           [],
           {#foodName: foodName},
         ),
-        returnValue: _i6.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>.value(
+        returnValue: _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>.value(
             _FakeEither_2<_i9.Failure, List<_i10.Food>>(
           this,
           Invocation.method(
@@ -149,9 +162,9 @@ class MockFoodRepository extends _i1.Mock implements _i8.FoodRepository {
             {#foodName: foodName},
           ),
         )),
-      ) as _i6.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>);
+      ) as _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>);
   @override
-  _i6.Future<_i4.Either<_i9.Failure, _i10.Food>> getFoodDetailById(
+  _i7.Future<_i4.Either<_i9.Failure, _i10.Food>> getFoodDetailById(
           {required String? foodId}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -159,7 +172,7 @@ class MockFoodRepository extends _i1.Mock implements _i8.FoodRepository {
           [],
           {#foodId: foodId},
         ),
-        returnValue: _i6.Future<_i4.Either<_i9.Failure, _i10.Food>>.value(
+        returnValue: _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>.value(
             _FakeEither_2<_i9.Failure, _i10.Food>(
           this,
           Invocation.method(
@@ -168,5 +181,75 @@ class MockFoodRepository extends _i1.Mock implements _i8.FoodRepository {
             {#foodId: foodId},
           ),
         )),
-      ) as _i6.Future<_i4.Either<_i9.Failure, _i10.Food>>);
+      ) as _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>);
+}
+
+/// A class which mocks [GetFoodListUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetFoodListUseCase extends _i1.Mock
+    implements _i11.GetFoodListUseCase {
+  MockGetFoodListUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.FoodRepository get foodRepository => (super.noSuchMethod(
+        Invocation.getter(#foodRepository),
+        returnValue: _FakeFoodRepository_3(
+          this,
+          Invocation.getter(#foodRepository),
+        ),
+      ) as _i5.FoodRepository);
+  @override
+  _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>> call(String? foodName) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [foodName],
+        ),
+        returnValue: _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>.value(
+            _FakeEither_2<_i9.Failure, List<_i10.Food>>(
+          this,
+          Invocation.method(
+            #call,
+            [foodName],
+          ),
+        )),
+      ) as _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>);
+}
+
+/// A class which mocks [GetFoodDetailUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetFoodDetailUseCase extends _i1.Mock
+    implements _i12.GetFoodDetailUseCase {
+  MockGetFoodDetailUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.FoodRepository get foodRepository => (super.noSuchMethod(
+        Invocation.getter(#foodRepository),
+        returnValue: _FakeFoodRepository_3(
+          this,
+          Invocation.getter(#foodRepository),
+        ),
+      ) as _i5.FoodRepository);
+  @override
+  _i7.Future<_i4.Either<_i9.Failure, _i10.Food>> call(String? foodId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [foodId],
+        ),
+        returnValue: _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>.value(
+            _FakeEither_2<_i9.Failure, _i10.Food>(
+          this,
+          Invocation.method(
+            #call,
+            [foodId],
+          ),
+        )),
+      ) as _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>);
 }
