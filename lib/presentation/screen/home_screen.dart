@@ -3,23 +3,14 @@ import 'package:mekari_pixel/mekari_pixel.dart';
 import 'package:nutrisari/presentation/widget/home/main_header.dart';
 import 'package:nutrisari/presentation/widget/home/search_result_container.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const HomeScreenContent();
-  }
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class HomeScreenContent extends StatefulWidget {
-  const HomeScreenContent({super.key});
-
-  @override
-  State<HomeScreenContent> createState() => _HomeScreenContentState();
-}
-
-class _HomeScreenContentState extends State<HomeScreenContent> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +19,10 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
         child: Column(
           children: const [
             MainHeader(),
-            MpVerticalSpace.s(),
-            MpSearch(),
-            MpVerticalSpace.s(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: MpSearch(),
+            ),
             SearchResultContainer(),
           ],
         ),

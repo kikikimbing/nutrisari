@@ -71,9 +71,10 @@ class NutritionData extends StatelessWidget {
     return Column(
       children: [
         Text(type, style: MpTextStyles.sm),
-        const MpVerticalSpace.xxxs(),
-        Text(amount, style: MpTextStyles.xl.semiBold),
-        const MpVerticalSpace.xxxs(),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: Text(amount, style: MpTextStyles.xl.semiBold),
+        ),
         Text(measure, style: MpTextStyles.sm),
       ],
     );

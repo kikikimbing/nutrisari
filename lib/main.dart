@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nutrisari/presentation/cubit/navigation/navigation_cubit.dart';
 import 'package:nutrisari/presentation/screen/detail_screen.dart';
-import 'package:nutrisari/presentation/screen/home_screen.dart';
+import 'package:nutrisari/presentation/screen/navigation_container_screen.dart';
 
 void main() {
   runApp(const NutrisariApp());
@@ -23,7 +25,10 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return BlocProvider(
+          create: (_) => NavigationCubit(),
+          child: const NavigationContainerScreen(),
+        );
       },
       routes: <RouteBase>[
         GoRoute(
