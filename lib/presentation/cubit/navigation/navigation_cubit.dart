@@ -12,8 +12,8 @@ class NavigationCubit extends Cubit<NavigationState> {
       case NavbarItem.home:
         emit(const NavigationState(NavbarItem.home, 0));
         break;
-      case NavbarItem.favorite:
-        emit(const NavigationState(NavbarItem.favorite, 1));
+      case NavbarItem.recommendation:
+        emit(const NavigationState(NavbarItem.recommendation, 1));
         break;
       case NavbarItem.calculator:
         emit(const NavigationState(NavbarItem.calculator, 2));

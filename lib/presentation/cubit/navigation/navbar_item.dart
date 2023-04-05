@@ -1,1 +1,1 @@
-enum NavbarItem { home, favorite, calculator, profile }
+enum NavbarItem { home, recommendation, calculator, profile }

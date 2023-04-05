@@ -4,7 +4,7 @@ import 'package:mekari_pixel/mekari_pixel.dart';
 import 'package:nutrisari/presentation/cubit/navigation/navbar_item.dart';
 import 'package:nutrisari/presentation/cubit/navigation/navigation_cubit.dart';
 import 'package:nutrisari/presentation/screen/home_screen.dart';
-import 'package:nutrisari/presentation/screen/favorite_screen.dart';
+import 'package:nutrisari/presentation/screen/recommendation_screen.dart';
 import 'package:nutrisari/presentation/screen/calorie_screen.dart';
 import 'package:nutrisari/presentation/screen/profile_screen.dart';
 
@@ -34,7 +34,7 @@ class _NavigationContainerScreenState extends State<NavigationContainerScreen> {
               ),
               MpBottomNavBarItemData(
                 key: const Key('1'),
-                label: 'Favorite',
+                label: 'Recommendation',
                 icon: MpIcons.feature.like,
               ),
               MpBottomNavBarItemData(
@@ -54,7 +54,7 @@ class _NavigationContainerScreenState extends State<NavigationContainerScreen> {
                     .getNavBarItem(NavbarItem.home);
               } else if (index == 1) {
                 BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.favorite);
+                    .getNavBarItem(NavbarItem.recommendation);
               } else if (index == 2) {
                 BlocProvider.of<NavigationCubit>(context)
                     .getNavBarItem(NavbarItem.calculator);
@@ -70,8 +70,8 @@ class _NavigationContainerScreenState extends State<NavigationContainerScreen> {
         builder: (context, state) {
           if (state.navbarItem == NavbarItem.home) {
             return HomeScreen();
-          } else if (state.navbarItem == NavbarItem.favorite) {
-            return FavoriteScreen();
+          } else if (state.navbarItem == NavbarItem.recommendation) {
+            return RecommendationScreen();
           } else if (state.navbarItem == NavbarItem.calculator) {
             return CalorieScreen();
           } else if (state.navbarItem == NavbarItem.profile) {

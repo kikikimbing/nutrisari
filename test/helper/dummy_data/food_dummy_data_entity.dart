@@ -33,3 +33,5 @@ const testFood = Food(
 );
 
 const testListFood = [testFood];
+
+const testString = "abc";

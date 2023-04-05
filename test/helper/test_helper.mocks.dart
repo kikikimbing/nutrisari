@@ -8,14 +8,16 @@ import 'dart:async' as _i7;
 import 'package:fpdart/fpdart.dart' as _i4;
 import 'package:mekari_network/mekari_network.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:nutrisari/core/error/failures.dart' as _i9;
+import 'package:nutrisari/core/error/failures.dart' as _i10;
 import 'package:nutrisari/core/networking/networking.dart' as _i6;
 import 'package:nutrisari/data/datasources/food_remote_datasource.dart' as _i8;
+import 'package:nutrisari/data/datasources/name_local_datasource.dart' as _i9;
 import 'package:nutrisari/data/models/food/food_model.dart' as _i3;
-import 'package:nutrisari/domain/entities/food.dart' as _i10;
+import 'package:nutrisari/domain/entities/food.dart' as _i11;
 import 'package:nutrisari/domain/repository/food_repository.dart' as _i5;
-import 'package:nutrisari/domain/usecases/get_food_detail_usecase.dart' as _i12;
-import 'package:nutrisari/domain/usecases/get_food_list_usecase.dart' as _i11;
+import 'package:nutrisari/domain/repository/name_repository.dart' as _i12;
+import 'package:nutrisari/domain/usecases/get_food_detail_usecase.dart' as _i14;
+import 'package:nutrisari/domain/usecases/get_food_list_usecase.dart' as _i13;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -136,6 +138,34 @@ class MockFoodRemoteDataSource extends _i1.Mock
       ) as _i7.Future<_i3.FoodModel>);
 }
 
+/// A class which mocks [NameLocalDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNameLocalDataSource extends _i1.Mock
+    implements _i9.NameLocalDataSource {
+  MockNameLocalDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<String> getName() => (super.noSuchMethod(
+        Invocation.method(
+          #getName,
+          [],
+        ),
+        returnValue: _i7.Future<String>.value(''),
+      ) as _i7.Future<String>);
+  @override
+  _i7.Future<bool> setName({required String? name}) => (super.noSuchMethod(
+        Invocation.method(
+          #setName,
+          [],
+          {#name: name},
+        ),
+        returnValue: _i7.Future<bool>.value(false),
+      ) as _i7.Future<bool>);
+}
+
 /// A class which mocks [FoodRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -145,7 +175,7 @@ class MockFoodRepository extends _i1.Mock implements _i5.FoodRepository {
   }
 
   @override
-  _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>> getFoodListByName(
+  _i7.Future<_i4.Either<_i10.Failure, List<_i11.Food>>> getFoodListByName(
           {required String? foodName}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -153,8 +183,9 @@ class MockFoodRepository extends _i1.Mock implements _i5.FoodRepository {
           [],
           {#foodName: foodName},
         ),
-        returnValue: _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>.value(
-            _FakeEither_2<_i9.Failure, List<_i10.Food>>(
+        returnValue:
+            _i7.Future<_i4.Either<_i10.Failure, List<_i11.Food>>>.value(
+                _FakeEither_2<_i10.Failure, List<_i11.Food>>(
           this,
           Invocation.method(
             #getFoodListByName,
@@ -162,9 +193,9 @@ class MockFoodRepository extends _i1.Mock implements _i5.FoodRepository {
             {#foodName: foodName},
           ),
         )),
-      ) as _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>);
+      ) as _i7.Future<_i4.Either<_i10.Failure, List<_i11.Food>>>);
   @override
-  _i7.Future<_i4.Either<_i9.Failure, _i10.Food>> getFoodDetailById(
+  _i7.Future<_i4.Either<_i10.Failure, _i11.Food>> getFoodDetailById(
           {required String? foodId}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -172,8 +203,8 @@ class MockFoodRepository extends _i1.Mock implements _i5.FoodRepository {
           [],
           {#foodId: foodId},
         ),
-        returnValue: _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>.value(
-            _FakeEither_2<_i9.Failure, _i10.Food>(
+        returnValue: _i7.Future<_i4.Either<_i10.Failure, _i11.Food>>.value(
+            _FakeEither_2<_i10.Failure, _i11.Food>(
           this,
           Invocation.method(
             #getFoodDetailById,
@@ -181,14 +212,57 @@ class MockFoodRepository extends _i1.Mock implements _i5.FoodRepository {
             {#foodId: foodId},
           ),
         )),
-      ) as _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>);
+      ) as _i7.Future<_i4.Either<_i10.Failure, _i11.Food>>);
+}
+
+/// A class which mocks [NameRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNameRepository extends _i1.Mock implements _i12.NameRepository {
+  MockNameRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i4.Either<_i10.Failure, String>> getName() => (super.noSuchMethod(
+        Invocation.method(
+          #getName,
+          [],
+        ),
+        returnValue: _i7.Future<_i4.Either<_i10.Failure, String>>.value(
+            _FakeEither_2<_i10.Failure, String>(
+          this,
+          Invocation.method(
+            #getName,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i4.Either<_i10.Failure, String>>);
+  @override
+  _i7.Future<_i4.Either<_i10.Failure, bool>> setName({required String? name}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setName,
+          [],
+          {#name: name},
+        ),
+        returnValue: _i7.Future<_i4.Either<_i10.Failure, bool>>.value(
+            _FakeEither_2<_i10.Failure, bool>(
+          this,
+          Invocation.method(
+            #setName,
+            [],
+            {#name: name},
+          ),
+        )),
+      ) as _i7.Future<_i4.Either<_i10.Failure, bool>>);
 }
 
 /// A class which mocks [GetFoodListUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetFoodListUseCase extends _i1.Mock
-    implements _i11.GetFoodListUseCase {
+    implements _i13.GetFoodListUseCase {
   MockGetFoodListUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -202,28 +276,30 @@ class MockGetFoodListUseCase extends _i1.Mock
         ),
       ) as _i5.FoodRepository);
   @override
-  _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>> call(String? foodName) =>
+  _i7.Future<_i4.Either<_i10.Failure, List<_i11.Food>>> call(
+          String? foodName) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [foodName],
         ),
-        returnValue: _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>.value(
-            _FakeEither_2<_i9.Failure, List<_i10.Food>>(
+        returnValue:
+            _i7.Future<_i4.Either<_i10.Failure, List<_i11.Food>>>.value(
+                _FakeEither_2<_i10.Failure, List<_i11.Food>>(
           this,
           Invocation.method(
             #call,
             [foodName],
           ),
         )),
-      ) as _i7.Future<_i4.Either<_i9.Failure, List<_i10.Food>>>);
+      ) as _i7.Future<_i4.Either<_i10.Failure, List<_i11.Food>>>);
 }
 
 /// A class which mocks [GetFoodDetailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetFoodDetailUseCase extends _i1.Mock
-    implements _i12.GetFoodDetailUseCase {
+    implements _i14.GetFoodDetailUseCase {
   MockGetFoodDetailUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -237,19 +313,19 @@ class MockGetFoodDetailUseCase extends _i1.Mock
         ),
       ) as _i5.FoodRepository);
   @override
-  _i7.Future<_i4.Either<_i9.Failure, _i10.Food>> call(String? foodId) =>
+  _i7.Future<_i4.Either<_i10.Failure, _i11.Food>> call(String? foodId) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [foodId],
         ),
-        returnValue: _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>.value(
-            _FakeEither_2<_i9.Failure, _i10.Food>(
+        returnValue: _i7.Future<_i4.Either<_i10.Failure, _i11.Food>>.value(
+            _FakeEither_2<_i10.Failure, _i11.Food>(
           this,
           Invocation.method(
             #call,
             [foodId],
           ),
         )),
-      ) as _i7.Future<_i4.Either<_i9.Failure, _i10.Food>>);
+      ) as _i7.Future<_i4.Either<_i10.Failure, _i11.Food>>);
 }

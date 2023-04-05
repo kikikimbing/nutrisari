@@ -2,14 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mekari_pixel/mekari_pixel.dart';
 
-class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({super.key});
+const foodRecommendation = [
+  "Haricot and cuttlefish salad",
+  "Goat and beef vindaloo",
+  "Rocket and egg penne",
+  "Pheasant and chilli wontons",
+  "Stilton and oatbran cupcakes",
+  "Cream and milk chocolate mousse",
+  "Chicken and apple wontons",
+  "Peppercorn and horseradish gyoza",
+  "Lumache and jalape salad",
+  "Vermicelli and napolitana pasta",
+  "Rhubarb and pineapple jam",
+  "Olive and chandeau salad",
+  "Goosnargh and coffee salad",
+  "Bresaola and pomegranate salad",
+  "Veal and cheese dumplings",
+];
+
+class RecommendationScreen extends StatefulWidget {
+  const RecommendationScreen({super.key});
 
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
+  State<RecommendationScreen> createState() => _RecommendationScreenState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
+class _RecommendationScreenState extends State<RecommendationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
