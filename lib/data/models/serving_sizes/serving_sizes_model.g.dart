@@ -10,7 +10,7 @@ _$_ServingSizesModel _$$_ServingSizesModelFromJson(Map<String, dynamic> json) =>
     _$_ServingSizesModel(
       uri: json['uri'] as String?,
       label: json['label'] as String?,
-      quantity: json['quantity'] as int?,
+      quantity: (json['quantity'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_ServingSizesModelToJson(

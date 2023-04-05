@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Nutrients extends Equatable {
-  final int enercKcal;
+  final double enercKcal;
   final double procnt;
   final double fat;
   final double chocdf;

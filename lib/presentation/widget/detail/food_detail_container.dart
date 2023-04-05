@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mekari_pixel/mekari_pixel.dart';
+import 'package:nutrisari/core/state/view_data_state.dart';
+import 'package:nutrisari/presentation/bloc/food_detail/food_detail_bloc.dart';
 import 'package:nutrisari/presentation/widget/detail/food_detail_additional_info.dart';
 import 'package:nutrisari/presentation/widget/detail/food_detail_image.dart';
 import 'package:nutrisari/presentation/widget/detail/food_detail_nutrition.dart';
@@ -10,32 +13,60 @@ class FoodDetailContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: addVerticalSpaceBetweenElements(
-            16,
-            [
-              MpTextAppBar(title: 'Food Details'),
-              const FoodDetailImage(),
-              const FoodDetailSectionTitle(
-                textTitle: "Chicken Salad",
+    return BlocBuilder<FoodDetailBloc, FoodDetailState>(
+      builder: (context, state) {
+        if (state.foodDetailState.status.isHasData) {
+          final food = state.foodDetailState.data;
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: addVerticalSpaceBetweenElements(
+                  16,
+                  [
+                    MpTextAppBar(title: 'Food Details'),
+                    FoodDetailImage(imageUrl: food?.image ?? ""),
+                    FoodDetailSectionTitle(
+                      textTitle: food?.label ?? "No Information",
+                    ),
+                    FoodDetailNutrition(
+                      calories:
+                          "${food?.nutrients?.enercKcal.toStringAsFixed(2)}",
+                      carbs: "${food?.nutrients?.chocdf.toStringAsFixed(2)}",
+                      protein: "${food?.nutrients?.procnt.toStringAsFixed(2)}",
+                      fat: "${food?.nutrients?.fat.toStringAsFixed(2)}",
+                      fiber: "${food?.nutrients?.fitbtg.toStringAsFixed(2)}",
+                    ),
+                    const FoodDetailSectionTitle(
+                      textTitle: "Ingredients Detail",
+                    ),
+                    Text(
+                      food?.foodContentsLabel.replaceAll(";", ",") ??
+                          "No Information",
+                      style: MpTextStyles.md,
+                    ),
+                    const FoodDetailSectionTitle(
+                      textTitle: "Additional Information",
+                    ),
+                    FoodDetailAdditionalInfo(
+                      brands: food?.brand ?? "No Info",
+                      knownAs: food?.knownAs ?? "No Info",
+                    ),
+                  ],
+                ),
               ),
-              const FoodDetailNutrition(),
-              const FoodDetailSectionTitle(
-                textTitle: "Ingredients Detail",
-              ),
-              const Text(
-                'Spice and coloring, Brown Sugar, Salt, Sugar, Garlic, Onion',
-                style: MpTextStyles.md,
-              ),
-              const FoodDetailSectionTitle(
-                textTitle: "Additional Information",
-              ),
-              const FoodDetailAdditionalInfo(),
-            ],
-          ),
-        ));
+            ),
+          );
+        } else if (state.foodDetailState.status.isLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return const Text("Empty");
+        }
+      },
+    );
   }
 
   List<Widget> addVerticalSpaceBetweenElements(

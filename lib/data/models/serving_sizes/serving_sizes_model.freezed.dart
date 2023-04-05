@@ -22,7 +22,7 @@ ServingSizesModel _$ServingSizesModelFromJson(Map<String, dynamic> json) {
 mixin _$ServingSizesModel {
   String? get uri => throw _privateConstructorUsedError;
   String? get label => throw _privateConstructorUsedError;
-  int? get quantity => throw _privateConstructorUsedError;
+  double? get quantity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $ServingSizesModelCopyWith<$Res> {
           ServingSizesModel value, $Res Function(ServingSizesModel) then) =
       _$ServingSizesModelCopyWithImpl<$Res, ServingSizesModel>;
   @useResult
-  $Res call({String? uri, String? label, int? quantity});
+  $Res call({String? uri, String? label, double? quantity});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$ServingSizesModelCopyWithImpl<$Res, $Val extends ServingSizesModel>
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$_ServingSizesModelCopyWith<$Res>
       __$$_ServingSizesModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? uri, String? label, int? quantity});
+  $Res call({String? uri, String? label, double? quantity});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$_ServingSizesModelCopyWithImpl<$Res>
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -129,7 +129,7 @@ class _$_ServingSizesModel implements _ServingSizesModel {
   @override
   final String? label;
   @override
-  final int? quantity;
+  final double? quantity;
 
   @override
   String toString() {
@@ -170,7 +170,7 @@ abstract class _ServingSizesModel implements ServingSizesModel {
   const factory _ServingSizesModel(
       {final String? uri,
       final String? label,
-      final int? quantity}) = _$_ServingSizesModel;
+      final double? quantity}) = _$_ServingSizesModel;
 
   factory _ServingSizesModel.fromJson(Map<String, dynamic> json) =
       _$_ServingSizesModel.fromJson;
@@ -180,7 +180,7 @@ abstract class _ServingSizesModel implements ServingSizesModel {
   @override
   String? get label;
   @override
-  int? get quantity;
+  double? get quantity;
   @override
   @JsonKey(ignore: true)
   _$$_ServingSizesModelCopyWith<_$_ServingSizesModel> get copyWith =>

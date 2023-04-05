@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mekari_pixel/mekari_pixel.dart';
+import 'package:nutrisari/presentation/bloc/name/name_bloc.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,55 +12,60 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  double countCalorie() {
-    // To be implemented
-    //  66 + (13.7 × weight in kg) + (5 × height in cm) - (6.8 × age in years).
-    return 0.0;
-  }
+  TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MpTextAppBar(title: "Profile"),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-        child: Center(
-          child: Column(
-            children: [
-              MpAvatar.icon(
-                icon: Icons.person_2_rounded,
-                size: MpAvatarSize.custom(value: 120.0),
-              ),
-              MpTextField(
-                label: "My Name",
-                hint: "e.g 24",
-                textInputType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                child: MpButton.primary(
-                  label: 'Save',
-                  onPressed: () {},
+    return BlocBuilder<NameBloc, NameState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: MpTextAppBar(title: "Profile"),
+          body: Padding(
+            padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+            child: Column(
+              children: [
+                MpAvatar.icon(
+                  icon: Icons.person_2_rounded,
+                  size: MpAvatarSize.custom(value: 120.0),
                 ),
-              ),
-              MpVerticalSpace.xl(),
-              FoodRecommendation(),
-            ],
+                MpTextField(
+                  controller: nameController,
+                  label: "My Name",
+                  hint: "e.g Johnie",
+                  textInputType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
+                  child: MpButton.primary(
+                    label: 'Change Name',
+                    onPressed: () {
+                      context
+                          .read<NameBloc>()
+                          .add(SetName(name: nameController.text));
+                    },
+                  ),
+                ),
+                const MpVerticalSpace.xl(),
+                const FoodRecommendation(),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
 
 class FoodRecommendation extends StatelessWidget {
+  const FoodRecommendation({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text("Food recommendation for you", style: MpTextStyles.md.semiBold),
-        MpVerticalSpace.s(),
+        const MpVerticalSpace.s(),
         CarouselSlider(
           options: CarouselOptions(
             autoPlay: true,

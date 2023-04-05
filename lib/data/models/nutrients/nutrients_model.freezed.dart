@@ -21,7 +21,7 @@ NutrientsModel _$NutrientsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NutrientsModel {
   @JsonKey(name: "ENERC_KCAL")
-  int? get enercKcal => throw _privateConstructorUsedError;
+  double? get enercKcal => throw _privateConstructorUsedError;
   @JsonKey(name: "PROCNT")
   double? get procnt => throw _privateConstructorUsedError;
   @JsonKey(name: "FAT")
@@ -44,7 +44,7 @@ abstract class $NutrientsModelCopyWith<$Res> {
       _$NutrientsModelCopyWithImpl<$Res, NutrientsModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "ENERC_KCAL") int? enercKcal,
+      {@JsonKey(name: "ENERC_KCAL") double? enercKcal,
       @JsonKey(name: "PROCNT") double? procnt,
       @JsonKey(name: "FAT") double? fat,
       @JsonKey(name: "CHOCDF") double? chocdf,
@@ -74,7 +74,7 @@ class _$NutrientsModelCopyWithImpl<$Res, $Val extends NutrientsModel>
       enercKcal: freezed == enercKcal
           ? _value.enercKcal
           : enercKcal // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       procnt: freezed == procnt
           ? _value.procnt
           : procnt // ignore: cast_nullable_to_non_nullable
@@ -104,7 +104,7 @@ abstract class _$$_NutrientsModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "ENERC_KCAL") int? enercKcal,
+      {@JsonKey(name: "ENERC_KCAL") double? enercKcal,
       @JsonKey(name: "PROCNT") double? procnt,
       @JsonKey(name: "FAT") double? fat,
       @JsonKey(name: "CHOCDF") double? chocdf,
@@ -132,7 +132,7 @@ class __$$_NutrientsModelCopyWithImpl<$Res>
       enercKcal: freezed == enercKcal
           ? _value.enercKcal
           : enercKcal // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       procnt: freezed == procnt
           ? _value.procnt
           : procnt // ignore: cast_nullable_to_non_nullable
@@ -168,7 +168,7 @@ class _$_NutrientsModel implements _NutrientsModel {
 
   @override
   @JsonKey(name: "ENERC_KCAL")
-  final int? enercKcal;
+  final double? enercKcal;
   @override
   @JsonKey(name: "PROCNT")
   final double? procnt;
@@ -221,7 +221,7 @@ class _$_NutrientsModel implements _NutrientsModel {
 
 abstract class _NutrientsModel implements NutrientsModel {
   const factory _NutrientsModel(
-      {@JsonKey(name: "ENERC_KCAL") final int? enercKcal,
+      {@JsonKey(name: "ENERC_KCAL") final double? enercKcal,
       @JsonKey(name: "PROCNT") final double? procnt,
       @JsonKey(name: "FAT") final double? fat,
       @JsonKey(name: "CHOCDF") final double? chocdf,
@@ -232,7 +232,7 @@ abstract class _NutrientsModel implements NutrientsModel {
 
   @override
   @JsonKey(name: "ENERC_KCAL")
-  int? get enercKcal;
+  double? get enercKcal;
   @override
   @JsonKey(name: "PROCNT")
   double? get procnt;

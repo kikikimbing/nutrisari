@@ -7,14 +7,11 @@ import 'package:nutrisari/data/repositories/food_repository_impl.dart';
 import 'package:nutrisari/data/repositories/name_repository_impl.dart';
 import 'package:nutrisari/domain/repository/food_repository.dart';
 import 'package:nutrisari/domain/repository/name_repository.dart';
+import 'package:nutrisari/domain/usecases/calculate_calorie_usecase.dart';
 import 'package:nutrisari/domain/usecases/get_food_detail_usecase.dart';
 import 'package:nutrisari/domain/usecases/get_food_list_usecase.dart';
 import 'package:nutrisari/domain/usecases/get_name_usecase.dart';
 import 'package:nutrisari/domain/usecases/set_name_usecase.dart';
-import 'package:nutrisari/presentation/bloc/food_detail/food_detail_bloc.dart';
-import 'package:nutrisari/presentation/bloc/food_list/food_list_bloc.dart';
-import 'package:nutrisari/presentation/bloc/name/name_bloc.dart';
-import 'package:nutrisari/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final nutrisariDependency = GetIt.instance;
@@ -22,33 +19,42 @@ final nutrisariDependency = GetIt.instance;
 class NutrisariDependency {
   const NutrisariDependency();
 
-  static registerNutrisari() {
+  Future<void> registerNutrisari() async {
+    await registerCore();
     _registerNetwork();
     _registerNutrisariData();
     _registerNutrisariDomain();
-    _registerNutrisariPresentation();
   }
 
-  static _registerNetwork() {
+  Future<void> registerCore() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    nutrisariDependency.registerLazySingleton(() => sharedPreferences);
+  }
+
+  void _registerNetwork() {
+    nutrisariDependency.registerLazySingleton<MKRNetwork>(
+      () => MKRNetwork(
+        baseUrl: 'https://api.edamam.com',
+      ),
+    );
+
     nutrisariDependency.registerLazySingleton<Networking>(
       () => Networking(
-        httpClient: MKRNetwork(
-          baseUrl: 'https://api.edamam.com/api/food-database/v2/parser',
-        ),
+        httpClient: nutrisariDependency(),
       ),
     );
   }
 
-  static _registerNutrisariData() {
+  void _registerNutrisariData() {
     nutrisariDependency.registerLazySingleton<FoodRemoteDataSource>(
       () => FoodRemoteDataSourceImpl(
         networking: nutrisariDependency(),
       ),
     );
 
-    nutrisariDependency.registerLazySingletonAsync<NameLocalDataSource>(
-      () async => NameLocalDataSourceImpl(
-        sharedPreferences: await SharedPreferences.getInstance(),
+    nutrisariDependency.registerLazySingleton<NameLocalDataSource>(
+      () => NameLocalDataSourceImpl(
+        sharedPreferences: nutrisariDependency(),
       ),
     );
 
@@ -61,7 +67,7 @@ class NutrisariDependency {
     );
   }
 
-  static _registerNutrisariDomain() {
+  void _registerNutrisariDomain() {
     nutrisariDependency.registerLazySingleton<GetFoodListUseCase>(
       () => GetFoodListUseCase(foodRepository: nutrisariDependency()),
     );
@@ -77,28 +83,9 @@ class NutrisariDependency {
     nutrisariDependency.registerLazySingleton<SetNameUseCase>(
       () => SetNameUseCase(nameRepository: nutrisariDependency()),
     );
-  }
 
-  static _registerNutrisariPresentation() {
-    nutrisariDependency.registerFactory<FoodListBloc>(
-      () => FoodListBloc(getFoodListUseCase: nutrisariDependency()),
-    );
-
-    nutrisariDependency.registerFactory<FoodDetailBloc>(
-      () => FoodDetailBloc(getFoodDetailUseCase: nutrisariDependency()),
-    );
-
-    nutrisariDependency.registerFactory<NameBloc>(
-      () => NameBloc(
-        getNameUseCase: nutrisariDependency(),
-        setNameUseCase: nutrisariDependency(),
-      ),
-    );
-
-    nutrisariDependency.registerFactory<RecommendationBloc>(
-      () => RecommendationBloc(
-        getFoodListUseCase: nutrisariDependency(),
-      ),
+    nutrisariDependency.registerLazySingleton<CalculateCalorieUseCase>(
+      () => const CalculateCalorieUseCase(),
     );
   }
 }

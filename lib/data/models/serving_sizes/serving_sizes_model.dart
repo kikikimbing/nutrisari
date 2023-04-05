@@ -8,7 +8,7 @@ class ServingSizesModel with _$ServingSizesModel {
   const factory ServingSizesModel({
     String? uri,
     String? label,
-    int? quantity,
+    double? quantity,
   }) = _ServingSizesModel;
 
   factory ServingSizesModel.fromJson(Map<String, dynamic> json) =>

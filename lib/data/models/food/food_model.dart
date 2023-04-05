@@ -18,7 +18,7 @@ class FoodModel with _$FoodModel {
     String? foodContentsLabel,
     String? image,
     List<ServingSizesModel>? servingSizes,
-    int? servingsPerContainer,
+    double? servingsPerContainer,
   }) = _FoodModel;
 
   factory FoodModel.fromJson(Map<String, dynamic> json) =>

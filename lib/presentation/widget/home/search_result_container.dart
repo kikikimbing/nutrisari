@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mekari_pixel/mekari_pixel.dart';
+import 'package:nutrisari/domain/entities/food.dart';
 import 'package:nutrisari/presentation/widget/home/result_card.dart';
 
 class SearchResultContainer extends StatelessWidget {
-  const SearchResultContainer({super.key});
+  final List<Food>? foodList;
+
+  const SearchResultContainer({
+    super.key,
+    required this.foodList,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +20,15 @@ class SearchResultContainer extends StatelessWidget {
           style: MpTextStyles.xl.semiBold,
         ),
         const MpVerticalSpace.s(),
-        ListView(
-          shrinkWrap: true,
-          children: const [
-            ResultCard(),
+        Column(
+          children: <Widget>[
+            for (var food in foodList!)
+              ResultCard(
+                foodId: food.foodId,
+                imageUrl: food.image,
+                name: food.label,
+                subtitle: food.foodContentsLabel,
+              )
           ],
         )
       ],

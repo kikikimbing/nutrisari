@@ -21,7 +21,7 @@ _$_FoodModel _$$_FoodModelFromJson(Map<String, dynamic> json) => _$_FoodModel(
       servingSizes: (json['servingSizes'] as List<dynamic>?)
           ?.map((e) => ServingSizesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      servingsPerContainer: json['servingsPerContainer'] as int?,
+      servingsPerContainer: (json['servingsPerContainer'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_FoodModelToJson(_$_FoodModel instance) =>

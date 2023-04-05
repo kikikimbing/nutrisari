@@ -8,6 +8,15 @@ import 'package:nutrisari/presentation/screen/recommendation_screen.dart';
 import 'package:nutrisari/presentation/screen/calorie_screen.dart';
 import 'package:nutrisari/presentation/screen/profile_screen.dart';
 
+enum IconType {
+  outlined,
+  duotone,
+  fill,
+  outlineDuotone,
+  outlineFill,
+  duotoneFill
+}
+
 class NavigationContainerScreen extends StatefulWidget {
   const NavigationContainerScreen({super.key});
 
@@ -20,32 +29,45 @@ class _NavigationContainerScreenState extends State<NavigationContainerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BlocConsumer<NavigationCubit, NavigationState>(
-        listener: (context, state) {
-          print(state);
-        },
+      bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           return MpBottomNavBar(
             items: [
               MpBottomNavBarItemData(
                 key: const Key('0'),
                 label: 'Home',
-                icon: MpIcons.feature.home,
+                icon: transformIconByType(
+                  MpIcons.feature.home,
+                  IconType.duotoneFill,
+                  0 == state.index,
+                ),
               ),
               MpBottomNavBarItemData(
                 key: const Key('1'),
                 label: 'Recommendation',
-                icon: MpIcons.feature.like,
+                icon: transformIconByType(
+                  MpIcons.feature.like,
+                  IconType.duotoneFill,
+                  1 == state.index,
+                ),
               ),
               MpBottomNavBarItemData(
                 key: const Key('2'),
                 label: 'Calorie Calculator',
-                icon: MpIcons.feature.calculator,
+                icon: transformIconByType(
+                  MpIcons.feature.calculator,
+                  IconType.duotoneFill,
+                  2 == state.index,
+                ),
               ),
               MpBottomNavBarItemData(
                 key: const Key('3'),
                 label: 'Profile',
-                icon: MpIcons.feature.profile,
+                icon: transformIconByType(
+                  MpIcons.feature.profile,
+                  IconType.duotoneFill,
+                  3 == state.index,
+                ),
               ),
             ],
             onTap: (index) {
@@ -69,17 +91,38 @@ class _NavigationContainerScreenState extends State<NavigationContainerScreen> {
       body: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           if (state.navbarItem == NavbarItem.home) {
-            return HomeScreen();
+            return const HomeScreen();
           } else if (state.navbarItem == NavbarItem.recommendation) {
-            return RecommendationScreen();
+            return const RecommendationScreen();
           } else if (state.navbarItem == NavbarItem.calculator) {
-            return CalorieScreen();
+            return const CalorieScreen();
           } else if (state.navbarItem == NavbarItem.profile) {
-            return ProfileScreen();
+            return const ProfileScreen();
           }
           return Container();
         },
       ),
     );
+  }
+
+  String transformIconByType(
+    String icon,
+    IconType type,
+    bool isActive,
+  ) {
+    switch (type) {
+      case IconType.outlined:
+        return icon;
+      case IconType.duotone:
+        return icon.duotone;
+      case IconType.fill:
+        return icon.fill;
+      case IconType.outlineFill:
+        return isActive ? icon.fill : icon;
+      case IconType.outlineDuotone:
+        return isActive ? icon.duotone : icon;
+      case IconType.duotoneFill:
+        return isActive ? icon.fill : icon.duotone;
+    }
   }
 }

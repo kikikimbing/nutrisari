@@ -24,8 +24,9 @@ class FoodRemoteDataSourceImpl implements FoodRemoteDataSource {
     required String foodName,
   }) async {
     final response = await networking.getRequest(params: foodName);
+
     return ApiResponseMapper.mapApiFoodListJsonToModel(
-      data: response,
+      data: response.data,
     );
   }
 
@@ -36,7 +37,7 @@ class FoodRemoteDataSourceImpl implements FoodRemoteDataSource {
     final response = await networking.getRequest(params: foodId);
 
     return ApiResponseMapper.mapApiFoodDetailJsonToModel(
-      data: response,
+      data: response.data,
     );
   }
 }

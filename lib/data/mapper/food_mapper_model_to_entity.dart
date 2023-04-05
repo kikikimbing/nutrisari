@@ -21,25 +21,25 @@ class FoodMapperModelToEntity {
   }) =>
       Food(
         foodId: model?.foodId ?? "",
-        label: model?.label ?? "",
-        knownAs: model?.knownAs ?? "",
-        brand: model?.brand ?? "",
-        category: model?.category ?? "",
-        categoryLabel: model?.categoryLabel ?? "",
-        foodContentsLabel: model?.foodContentsLabel ?? "",
+        label: model?.label ?? "No Info",
+        knownAs: model?.knownAs ?? "No Info",
+        brand: model?.brand ?? "No Info",
+        category: model?.category ?? "No Info",
+        categoryLabel: model?.categoryLabel ?? "No Info",
+        foodContentsLabel: model?.foodContentsLabel ?? "No Info",
         image: model?.image ?? "",
         nutrients: mapNutrientsModelToNutrients(model: model?.nutrients),
         servingSizes: mapListServingSizesModelToListServingSize(
           model: model?.servingSizes,
         ),
-        servingsPerContainer: model?.servingsPerContainer ?? 0,
+        servingsPerContainer: model?.servingsPerContainer ?? 0.0,
       );
 
   static Nutrients mapNutrientsModelToNutrients({
     NutrientsModel? model,
   }) =>
       Nutrients(
-        enercKcal: model?.enercKcal ?? 0,
+        enercKcal: model?.enercKcal ?? 0.0,
         procnt: model?.procnt ?? 0.0,
         fat: model?.fat ?? 0.0,
         chocdf: model?.chocdf ?? 0.0,
@@ -61,7 +61,7 @@ class FoodMapperModelToEntity {
   }) =>
       ServingSizes(
         uri: model?.uri ?? "",
-        label: model?.label ?? "",
-        quantity: model?.quantity ?? 0,
+        label: model?.label ?? "No Info",
+        quantity: model?.quantity ?? 0.0,
       );
 }

@@ -2,7 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:mekari_pixel/mekari_pixel.dart';
 
 class FoodDetailNutrition extends StatelessWidget {
-  const FoodDetailNutrition({super.key});
+  final String calories;
+  final String carbs;
+  final String protein;
+  final String fat;
+  final String fiber;
+
+  const FoodDetailNutrition({
+    super.key,
+    required this.calories,
+    required this.carbs,
+    required this.protein,
+    required this.fat,
+    required this.fiber,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,30 +33,30 @@ class FoodDetailNutrition extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
+            children: [
               NutritionData(
                 type: 'calories',
-                amount: '350',
+                amount: calories,
                 measure: 'kcal',
               ),
               NutritionData(
                 type: 'carbs',
-                amount: '100',
+                amount: carbs,
                 measure: 'gr',
               ),
               NutritionData(
                 type: 'protein',
-                amount: '10',
+                amount: protein,
                 measure: 'gr',
               ),
               NutritionData(
-                type: 'iron',
-                amount: '200',
+                type: 'fat',
+                amount: fat,
                 measure: 'mg',
               ),
               NutritionData(
                 type: 'fiber',
-                amount: '0.5',
+                amount: fiber,
                 measure: 'g',
               ),
             ],
@@ -73,7 +86,7 @@ class NutritionData extends StatelessWidget {
         Text(type, style: MpTextStyles.sm),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4.0),
-          child: Text(amount, style: MpTextStyles.xl.semiBold),
+          child: Text(amount, style: MpTextStyles.l.semiBold),
         ),
         Text(measure, style: MpTextStyles.sm),
       ],

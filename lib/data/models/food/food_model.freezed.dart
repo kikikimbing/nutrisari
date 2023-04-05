@@ -31,7 +31,7 @@ mixin _$FoodModel {
   String? get image => throw _privateConstructorUsedError;
   List<ServingSizesModel>? get servingSizes =>
       throw _privateConstructorUsedError;
-  int? get servingsPerContainer => throw _privateConstructorUsedError;
+  double? get servingsPerContainer => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +55,7 @@ abstract class $FoodModelCopyWith<$Res> {
       String? foodContentsLabel,
       String? image,
       List<ServingSizesModel>? servingSizes,
-      int? servingsPerContainer});
+      double? servingsPerContainer});
 
   $NutrientsModelCopyWith<$Res>? get nutrients;
 }
@@ -129,7 +129,7 @@ class _$FoodModelCopyWithImpl<$Res, $Val extends FoodModel>
       servingsPerContainer: freezed == servingsPerContainer
           ? _value.servingsPerContainer
           : servingsPerContainer // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ) as $Val);
   }
 
@@ -164,7 +164,7 @@ abstract class _$$_FoodModelCopyWith<$Res> implements $FoodModelCopyWith<$Res> {
       String? foodContentsLabel,
       String? image,
       List<ServingSizesModel>? servingSizes,
-      int? servingsPerContainer});
+      double? servingsPerContainer});
 
   @override
   $NutrientsModelCopyWith<$Res>? get nutrients;
@@ -237,7 +237,7 @@ class __$$_FoodModelCopyWithImpl<$Res>
       servingsPerContainer: freezed == servingsPerContainer
           ? _value.servingsPerContainer
           : servingsPerContainer // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -291,7 +291,7 @@ class _$_FoodModel implements _FoodModel {
   }
 
   @override
-  final int? servingsPerContainer;
+  final double? servingsPerContainer;
 
   @override
   String toString() {
@@ -364,7 +364,7 @@ abstract class _FoodModel implements FoodModel {
       final String? foodContentsLabel,
       final String? image,
       final List<ServingSizesModel>? servingSizes,
-      final int? servingsPerContainer}) = _$_FoodModel;
+      final double? servingsPerContainer}) = _$_FoodModel;
 
   factory _FoodModel.fromJson(Map<String, dynamic> json) =
       _$_FoodModel.fromJson;
@@ -390,7 +390,7 @@ abstract class _FoodModel implements FoodModel {
   @override
   List<ServingSizesModel>? get servingSizes;
   @override
-  int? get servingsPerContainer;
+  double? get servingsPerContainer;
   @override
   @JsonKey(ignore: true)
   _$$_FoodModelCopyWith<_$_FoodModel> get copyWith =>

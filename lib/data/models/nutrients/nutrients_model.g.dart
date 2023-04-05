@@ -8,7 +8,7 @@ part of 'nutrients_model.dart';
 
 _$_NutrientsModel _$$_NutrientsModelFromJson(Map<String, dynamic> json) =>
     _$_NutrientsModel(
-      enercKcal: json['ENERC_KCAL'] as int?,
+      enercKcal: (json['ENERC_KCAL'] as num?)?.toDouble(),
       procnt: (json['PROCNT'] as num?)?.toDouble(),
       fat: (json['FAT'] as num?)?.toDouble(),
       chocdf: (json['CHOCDF'] as num?)?.toDouble(),

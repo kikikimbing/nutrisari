@@ -13,7 +13,7 @@ class Food extends Equatable {
   final String foodContentsLabel;
   final String image;
   final List<ServingSizes> servingSizes;
-  final int servingsPerContainer;
+  final double servingsPerContainer;
 
   const Food({
     required this.foodId,

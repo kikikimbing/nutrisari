@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mekari_pixel/mekari_pixel.dart';
 
 class FoodDetailAdditionalInfo extends StatelessWidget {
-  const FoodDetailAdditionalInfo({super.key});
+  final String brands;
+  final String knownAs;
+
+  const FoodDetailAdditionalInfo({
+    super.key,
+    required this.brands,
+    required this.knownAs,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +25,17 @@ class FoodDetailAdditionalInfo extends StatelessWidget {
             vertical: 16.0,
             horizontal: 8.0,
           ),
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
+            children: [
               Information(
                 name: 'Brands',
-                value: 'Nestle',
+                value: brands,
               ),
+              const MpVerticalSpace.xs(),
               Information(
                 name: 'Knowns As',
-                value: 'Chiks Salad',
+                value: knownAs,
               ),
             ],
           ),
@@ -53,7 +61,14 @@ class Information extends StatelessWidget {
       children: [
         Text(name, style: MpTextStyles.sm),
         const MpVerticalSpace.xxxs(),
-        Text(value, style: MpTextStyles.xl.semiBold),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            value,
+            style: MpTextStyles.md.semiBold,
+            textAlign: TextAlign.center,
+          ),
+        ),
       ],
     );
   }

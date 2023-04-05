@@ -6,7 +6,7 @@ part 'nutrients_model.g.dart';
 @freezed
 class NutrientsModel with _$NutrientsModel {
   const factory NutrientsModel({
-    @JsonKey(name: "ENERC_KCAL") int? enercKcal,
+    @JsonKey(name: "ENERC_KCAL") double? enercKcal,
     @JsonKey(name: "PROCNT") double? procnt,
     @JsonKey(name: "FAT") double? fat,
     @JsonKey(name: "CHOCDF") double? chocdf,

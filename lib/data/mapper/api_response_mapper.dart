@@ -8,11 +8,14 @@ class ApiResponseMapper {
 
   static List<FoodModel> mapApiFoodListJsonToModel({
     required Map<String, dynamic> data,
-  }) =>
-      List<FoodModel>.from(
-        data['hints']?.map(
-              (food) => FoodModel.fromJson(food["food"]),
-            ) ??
-            [],
-      );
+  }) {
+    final result = List<FoodModel>.from(
+      data['hints']?.map(
+            (food) => FoodModel.fromJson(food["food"]),
+          ) ??
+          [],
+    );
+
+    return result;
+  }
 }

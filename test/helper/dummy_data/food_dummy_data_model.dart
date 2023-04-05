@@ -29,7 +29,7 @@ const testFoodModel = FoodModel(
   image:
       "https://www.edamam.com/food-img/5fa/5fab5f02c0372272b5e21a11fc41db7d.png",
   servingSizes: [testServingSizesModel],
-  servingsPerContainer: 20,
+  servingsPerContainer: 20.0,
 );
 
 const testListFoodModel = [testFoodModel];
