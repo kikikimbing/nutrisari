@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mekari_pixel/mekari_pixel.dart';
+import 'package:nutrisari/core/state/view_data_state.dart';
 import 'package:nutrisari/presentation/bloc/name/name_bloc.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -16,39 +17,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NameBloc, NameState>(
+    return BlocConsumer<NameBloc, NameState>(
+      listener: (context, state) {
+        if (state.setNameState.status.isHasData) {
+          MpDialog.show(
+            context,
+            builder: (_) => MpDialogContent(
+              body: const Text('Successfully change name!'),
+              footer: MpActionGroup(
+                actions: [
+                  MpButton.primary(
+                    label: 'Ok',
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: MpTextAppBar(title: "Profile"),
-          body: Padding(
-            padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-            child: Column(
-              children: [
-                MpAvatar.icon(
-                  icon: Icons.person_2_rounded,
-                  size: MpAvatarSize.custom(value: 120.0),
-                ),
-                MpTextField(
-                  controller: nameController,
-                  label: "My Name",
-                  hint: "e.g Johnie",
-                  textInputType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  child: MpButton.primary(
-                    label: 'Change Name',
-                    onPressed: () {
-                      context
-                          .read<NameBloc>()
-                          .add(SetName(name: nameController.text));
-                    },
+          body: SingleChildScrollView(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+              child: Column(
+                children: [
+                  MpAvatar.icon(
+                    icon: Icons.person_2_rounded,
+                    size: MpAvatarSize.custom(value: 120.0),
                   ),
-                ),
-                const MpVerticalSpace.xl(),
-                const FoodRecommendation(),
-              ],
+                  MpTextField(
+                    controller: nameController,
+                    label: "My Name",
+                    hint: "e.g Johnie",
+                    textInputType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    child: MpButton.primary(
+                      label: 'Change Name',
+                      onPressed: () {
+                        context
+                            .read<NameBloc>()
+                            .add(SetName(name: nameController.text));
+                      },
+                    ),
+                  ),
+                  const MpVerticalSpace.xl(),
+                  const FoodRecommendation(),
+                ],
+              ),
             ),
           ),
         );

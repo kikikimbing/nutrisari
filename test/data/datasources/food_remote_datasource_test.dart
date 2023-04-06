@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mekari_network/mekari_network.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nutrisari/data/datasources/food_remote_datasource.dart';
 import 'package:nutrisari/data/mapper/api_response_mapper.dart';
@@ -39,7 +40,7 @@ void main() {
       () async {
         /// Given
         when(mockNetworking.getRequest(params: testFoodName)).thenAnswer(
-          (_) async => foodListJson,
+          (_) async => NetworkResponse(data: foodListJson),
         );
 
         /// When
@@ -58,7 +59,7 @@ void main() {
       () async {
         /// Given
         when(mockNetworking.getRequest(params: testFoodName)).thenAnswer(
-          (_) async => foodEmptyListJson,
+          (_) async => NetworkResponse(data: foodEmptyListJson),
         );
 
         /// When
@@ -87,7 +88,7 @@ void main() {
       () async {
         /// Given
         when(mockNetworking.getRequest(params: testFoodId)).thenAnswer(
-          (_) async => foodDetailJson,
+          (_) async => NetworkResponse(data: foodDetailJson),
         );
 
         /// When
